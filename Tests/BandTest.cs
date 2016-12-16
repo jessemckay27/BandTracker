@@ -15,11 +15,23 @@ namespace BandTracker.Objects
     }
 
     [Fact]
-    public void Test_BandsEmptyAtFirst_0()
+    public void GetAll_BandsEmptyAtFirst_0()
     {
       int result = Band.GetAll().Count;
       Assert.Equal(0, result);
     }
+
+    [Fact]
+    public void Equal_EquivalentBandObjectsAreEqual_true()
+    {
+      Band testBand1 = new Band("Grateful Dead");
+      Band testBand2 = new Band("Grateful Dead");
+
+      Assert.Equal(testBand1, testBand2);
+    }
+
+
+
 
     public void Dispose()
     {
