@@ -87,7 +87,7 @@ namespace BandTracker.Objects
       return allBands;
     }
 
-    public void Save()
+    public void Save()  //AddBand()
     {
       SqlConnection conn = DB.Connection();
       conn.Open();
@@ -115,9 +115,7 @@ namespace BandTracker.Objects
       }
     }
 
-
-
-
+  
 
     public static void DeleteAll()
     {

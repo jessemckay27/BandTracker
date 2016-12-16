@@ -56,6 +56,43 @@ namespace BandTracker.Objects
       Assert.Equal(savedId, testId);
     }
 
+    [Fact]
+    public void AddVenue_AddsVenueToBand_VenueList()
+    {
+      Band newBand = new Band("Grateful Dead");
+      newBand.Save();
+
+      Venue testVenue1 = new Venue("The Filmore");
+      testVenue1.Save();
+
+      Venue testVenue2 = new Venue("Cornell University");
+      testVenue2.Save();
+
+      newBand.AddVenue(testVenue1);
+      newBand.AddVenue(testVenue2);
+
+      List<Venue> savedVenues = newBand.GetVenues();
+      List<Venue> testVenues = new List<Venue>{testVenue1, testVenue2};
+
+      Assert.Equal(savedVenues, testVenues);
+    }
+
+    [Fact]
+    public void GetVenues_ReturnAllVenuesFromBand_VenueList()
+    {
+      Band newBand = new Band("Grateful Dead");
+      newBand.Save();
+
+      Venue testVenue1 = new Venue("The Filmore");
+      testVenue1.Save();
+
+      Venue testVenue2 = new Venue("Cornell University");
+      testVenue2.Save();
+
+      newBand.AddVenue(testVenue1);
+      List<Venue> savedVenue = newBand.GetVenues();
+      List<Venue> testVenue = new List<Venue> {testVenue1, testVenue2};
+    }
 
 
     public void Dispose()
