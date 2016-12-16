@@ -31,7 +31,7 @@ namespace BandTracker.Objects
     }
 
     [Fact]
-    public void Save_NewBandSavesToDatabase_ListOfBands()
+    public void Save_NewBandSavesToDatabase_BandList()
     {
       Band testBand = new Band("Grateful Dead");
       testBand.Save();
@@ -43,7 +43,7 @@ namespace BandTracker.Objects
     }
 
     [Fact]
-    public void Save_AssignsNewIdToObject_Id()
+    public void Save_AssignsNewIdToObject_BandId()
     {
       Band savedBand = new Band("Grateful Dead");
       savedBand.Save();
@@ -94,6 +94,15 @@ namespace BandTracker.Objects
       List<Venue> testVenue = new List<Venue> {testVenue1, testVenue2};
     }
 
+    public void Find_FindBandInDatabase_BandId()
+    {
+      Band newBand = new Band("Grateful Dead");
+      newBand.Save();
+
+      Band foundBand = Band.Find(newBand.GetId());
+
+      Assert.Equal(newBand, foundBand);
+    }
 
     public void Dispose()
     {
