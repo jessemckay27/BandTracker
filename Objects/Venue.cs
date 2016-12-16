@@ -92,7 +92,7 @@ namespace BandTracker.Objects
       SqlConnection conn = DB.Connection();
       conn.Open();
 
-      SqlCommand cmd = new SqlCommand("INSERT INTO venues (locatoin) OUTPUT INSERTED.id VALUES (@LocationName);", conn);
+      SqlCommand cmd = new SqlCommand("INSERT INTO venues (location) OUTPUT INSERTED.id VALUES (@LocationName);", conn);
 
       SqlParameter locationParameter = new SqlParameter();
       locationParameter.ParameterName = "@LocationName";

@@ -43,7 +43,20 @@ namespace BandTracker.Objects
     }
 
     [Fact]
-    
+    public void Save_AssignsNewIdToObject_Id()
+    {
+      Venue savedVenue = new Venue("The Filmore");
+      savedVenue.Save();
+
+      Venue testVenue = Venue.GetAll()[0];
+
+      int savedId = savedVenue.GetId();
+      int testId = testVenue.GetId();
+
+      Assert.Equal(savedId, testId);
+    }
+
+
 
 
 
