@@ -21,6 +21,15 @@ namespace BandTracker.Objects
       Assert.Equal(0, result);
     }
 
+    [Fact]
+    public void Equal_EquivalentVenueObjectsAreEqual_true()
+    {
+      Band testVenue1 = new Band("The Filmore");
+      Band testVenue2 = new Band("The Filmore");
+
+      Assert.Equal(testVenue1, testVenue2);
+    }
+
     public void Dispose()
     {
       Band.DeleteAll();
