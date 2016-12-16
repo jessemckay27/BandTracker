@@ -1,16 +1,16 @@
 using Xunit;
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Collections.Generic;
 
 namespace BandTracker.Objects
 {
-  public class ClientTest: IDisposable
+  public class BandTest: IDisposable
   {
-    public ClientTest()
+    public BandTest()
     {
-      DBConfiguration.ConnectionString = "Data Source=desktop-ddsnb9e;Initial Catalog=band_test;Integrated Security=SSPI";
+      DBConfiguration.ConnectionString = "Data Source=desktop-ddsnb9e;Initial Catalog=band_tracker_test;Integrated Security=SSPI";
       // DBConfiguration.ConnectionString = "Data Source=(localdb)\\mssqllocaldb;Initial Catalog=band_test;Integrated Security=SSPI";
     }
 
@@ -21,8 +21,10 @@ namespace BandTracker.Objects
       Assert.Equal(0, result);
     }
 
-    
-
-
+    public void Dispose()
+    {
+      Band.DeleteAll();
+      Venue.DeleteAll();
+    }
   }
 }
