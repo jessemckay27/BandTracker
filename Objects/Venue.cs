@@ -87,6 +87,34 @@ namespace BandTracker.Objects
       return allVenues;
     }
 
+    public void Save()
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("INSERT INTO venues (locatoin) OUTPUT INSERTED.id VALUES (@LocationName);", conn);
+
+      SqlParameter locationParameter = new SqlParameter();
+      locationParameter.ParameterName = "@LocationName";
+      locationParameter.Value = this.GetLocation();
+
+      cmd.Parameters.Add(locationParameter);
+      SqlDataReader rdr = cmd.ExecuteReader();
+
+      while(rdr.Read())
+      {
+        this._id = rdr.GetInt32(0);
+      }
+      if(rdr != null)
+      {
+        rdr.Close();
+      }
+      if(conn != null)
+      {
+        conn.Close();
+      }
+    }
+
     public static void DeleteAll()
     {
       SqlConnection conn = DB.Connection();
@@ -96,6 +124,5 @@ namespace BandTracker.Objects
       cmd.ExecuteNonQuery();
       conn.Close();
     }
-
   }
 }

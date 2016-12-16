@@ -42,7 +42,19 @@ namespace BandTracker.Objects
       Assert.Equal(savedBands, testBands);
     }
 
+    [Fact]
+    public void Save_AssignsNewIdToObject_Id()
+    {
+      Band savedBand = new Band("Grateful Dead");
+      savedBand.Save();
 
+      Band testBand = Band.GetAll()[0];
+
+      int savedId = savedBand.GetId();
+      int testId = testBand.GetId();
+
+      Assert.Equal(savedId, testId);
+    }
 
 
 

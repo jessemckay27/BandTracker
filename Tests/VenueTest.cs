@@ -30,6 +30,23 @@ namespace BandTracker.Objects
       Assert.Equal(testVenue1, testVenue2);
     }
 
+    [Fact]
+    public void Save_NewVenueSavesToDatabase_ListOfVenues()
+    {
+      Band testBand = new Band("Grateful Dead");
+      testBand.Save();
+
+      List<Band> savedBands = Band.GetAll();
+      List<Band>  testBands = new List<Band>{testBand};
+
+      Assert.Equal(savedBands, testBands);
+    }
+
+    [Fact]
+    
+
+
+
     public void Dispose()
     {
       Band.DeleteAll();
