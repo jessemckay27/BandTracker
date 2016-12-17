@@ -2,18 +2,24 @@
 	Layout="Shared/_Layout.cshtml";
 }
 
-@if (Model.Count == 0)
+@if (Model.Count <= 0)
 {
-	<p>There are no Bands in your list.</p>
+	<div>There are no bands in your list.</div>
 }
 else
 {
+	<div>Here is a list of all the bands:</div>
 	<ul>
 	@foreach (var band in Model)
 	{
-		<li><a href="/bands/@band.GetName()">@band.GetName()</a></li>
+		<li><a href="/bands/@band.GetId()">@band.GetName()</a></li>
 	}
 	</ul>
 }
 
-<div class=""><a href="/">Home</a></div>
+<div><a href="/bands/new">Add Band</a></div>
+<div><a href="/">Home</a></div>
+
+<form action="/bands/delete" method="post">
+  <button class="btn btn-default" type="submit">Delete All Bands</button>
+</form>

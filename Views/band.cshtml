@@ -1,0 +1,17 @@
+@{
+	Layout="Shared/_Layout.cshtml";
+}
+
+@if(Model.GetVenues().Count <= 0)
+{
+	<div>There are not venues for this band.</div>
+}
+else
+{
+	<ul>
+	@foreach(var venue in Model.GetVenues())
+	{
+		<li></li>
+	}
+	</ul>
+}

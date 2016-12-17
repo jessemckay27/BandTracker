@@ -7,10 +7,16 @@
 		<title>Band Tracker</title>
 	</head>
 	<body>
-		<div class="container">
+		<div class="container-fluid">
+			<div class="row" id="header">
+				<div class="col-md-6 col-md-offset-3 col-sm-md-8 col-sm-offset-2">
+					<h1>Band & Venue Tracker</h1>
+				</div>
+			</div>
 			<div class="row">
-				<h1>Band Tracker</h1>
-          @RenderBody()
+				<div class="col-md-6 col-md-offset-3 col-sm-md-8 col-sm-offset-2">
+	      @RenderBody()
+				</div>
 			</div>
 		</div>
 	</body>

@@ -4,16 +4,23 @@
 
 @if (Model.Count <= 0)
 {
-	<p>There are no Venues in your list.</p>
+	<div>There are no venues in your list.</div>
 }
 else
 {
+	<div>Here is a list of all the venues:</div>
 	<ul>
 	@foreach (var venue in Model)
 	{
-		<li><a href="/venues/@venue.GetLocation()">@venue.GetLocation()</a></li>
+		<li><a href="/venues/@venue.GetId()">@venue.GetLocation()</a></li>
 	}
 	</ul>
 }
 
-<div class=""><a href="/">Home</a></div>
+
+<div><a href="/venues/new">Add Venue</a></div>
+<div><a href="/">Home</a></div>
+
+<form action="/venues/delete" method="post">
+  <button class="btn btn-default" type="submit">Delete All Venues</button>
+</form>
