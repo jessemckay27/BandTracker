@@ -90,8 +90,12 @@ namespace BandTracker.Objects
       testVenue2.Save();
 
       newBand.AddVenue(testVenue1);
+      newBand.AddVenue(testVenue2);
+
       List<Venue> savedVenue = newBand.GetVenues();
-      List<Venue> testVenue = new List<Venue> {testVenue1, testVenue2};
+      List<Venue> testVenue = new List<Venue>{testVenue1, testVenue2};
+
+      Assert.Equal(savedVenue, testVenue);
     }
 
     public void Find_FindBandInDatabase_BandId()

@@ -77,6 +77,27 @@ namespace BandTracker.Objects
       Assert.Equal(savedBands, testBands);
     }
 
+    [Fact]
+    public void GetBands_ReturnAllBandsFromVenue_BandList()
+    {
+      Venue newVenue = new Venue("The Filmore");
+      newVenue.Save();
+
+      Band testBand1 = new Band("Grateful Dead");
+      testBand1.Save();
+
+      Band testBand2 = new Band("Jerry Garcia Band");
+      testBand2.Save();
+
+      newVenue.AddBand(testBand1);
+      newVenue.AddBand(testBand2);
+
+
+      List<Band> savedBand = newVenue.GetBands();
+      List<Band> testBand = new List<Band> {testBand1, testBand2};
+
+      Assert.Equal(savedBand, testBand);
+    }
 
 
 
