@@ -1,0 +1,19 @@
+@{
+	Layout="Shared/_Layout.cshtml";
+}
+
+@if (Model.Count == 0)
+{
+	<p>There are no Bands in your list.</p>
+}
+else
+{
+	<ul>
+	@foreach (var band in Model)
+	{
+		<li><a href="/bands/@band.GetName()">@band.GetName()</a></li>
+	}
+	</ul>
+}
+
+<div class=""><a href="/">Home</a></div>

@@ -57,7 +57,7 @@ namespace BandTracker.Objects
       return _location.GetHashCode();
     }
 
-    public static List<Venue>  GetAll()
+    public static List<Venue> GetAll()
     {
       List<Venue> allVenues = new List<Venue>{};
 

@@ -57,7 +57,7 @@ namespace BandTracker.Objects
       return _name.GetHashCode();
     }
 
-    public static List<Band>  GetAll()
+    public static List<Band> GetAll()
     {
       List<Band> allBands = new List<Band>{};
 
