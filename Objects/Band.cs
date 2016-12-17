@@ -87,7 +87,7 @@ namespace BandTracker.Objects
       return allBands;
     }
 
-    public void Save()  //AddBand()
+    public void Save()
     {
       SqlConnection conn = DB.Connection();
       conn.Open();
@@ -120,7 +120,7 @@ namespace BandTracker.Objects
       SqlConnection conn = DB.Connection();
       conn.Open();
 
-      SqlCommand cmd = new SqlCommand("INSERT INTO venues_bands (band_id, venue_id) VALUES (@BandId, @VenueId);", conn);
+      SqlCommand cmd = new SqlCommand("INSERT INTO venues_bands (venue_id, band_id) VALUES (@VenueId, @BandId);", conn);
 
       SqlParameter bandIdParameter = new SqlParameter();
       bandIdParameter.ParameterName = "@BandId";
@@ -130,10 +130,11 @@ namespace BandTracker.Objects
       venueIdParameter.ParameterName = "@VenueId";
       venueIdParameter.Value = newVenue.GetId();
 
-      cmd.Parameters.Add(venueIdParameter);
       cmd.Parameters.Add(bandIdParameter);
+      cmd.Parameters.Add(venueIdParameter);
 
       cmd.ExecuteNonQuery();
+
       if(conn != null)
       {
         conn.Close();

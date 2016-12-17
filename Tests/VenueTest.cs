@@ -37,13 +37,13 @@ namespace BandTracker.Objects
       testBand.Save();
 
       List<Band> savedBands = Band.GetAll();
-      List<Band>  testBands = new List<Band>{testBand};
+      List<Band> testBands = new List<Band>{testBand};
 
       Assert.Equal(savedBands, testBands);
     }
 
     [Fact]
-    public void Save_AssignsNewIdToObject_Id()
+    public void Save_AssignsIdToNewVenueObject_Id()
     {
       Venue savedVenue = new Venue("The Filmore");
       savedVenue.Save();
@@ -55,6 +55,28 @@ namespace BandTracker.Objects
 
       Assert.Equal(savedId, testId);
     }
+
+    [Fact]
+    public void AddBand_AddsBandToVenue_BandList()
+    {
+      Venue newVenue = new Venue("The Filmore");
+      newVenue.Save();
+
+      Band testBand1 = new Band("Grateful Dead");
+      testBand1.Save();
+
+      Band testBand2 = new Band("Jerry Garcia Band");
+      testBand2.Save();
+
+      newVenue.AddBand(testBand1);
+      newVenue.AddBand(testBand2);
+
+      List<Band> savedBands = newVenue.GetBands();
+      List<Band> testBands = new List<Band>{testBand1, testBand2};
+
+      Assert.Equal(savedBands, testBands);
+    }
+
 
 
 

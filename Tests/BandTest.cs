@@ -43,7 +43,7 @@ namespace BandTracker.Objects
     }
 
     [Fact]
-    public void Save_AssignsNewIdToObject_BandId()
+    public void Save_AssignsIdToNewBandObject_BandId()
     {
       Band savedBand = new Band("Grateful Dead");
       savedBand.Save();
