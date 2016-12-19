@@ -1,14 +1,14 @@
 @{
 	Layout="Shared/_Layout.cshtml";
 }
-
+<h3>@Model["band"].GetName()</h3>
 @if(@Model["bandVenues"].Count <= 0)
 {
 	<div>This band has no venues.</div>
 }
 else
 {
-	<div>@Model["band"].GetName() are playing at these venue(s):</div>
+	<div>Playing at the following venues:</div>
 	<ul>
 		@foreach(var venue in @Model["bandVenues"])
 		{
@@ -16,19 +16,24 @@ else
 		}
 	</ul>
 }
-
-<div>Add a venue to this band:</div>
-<form action='/band/add_venue' method='post'>
-	<div class="form-group">
-	  <input id='band-id' name='band-id' type='hidden' value='@Model["band"].GetId()'>
-	  <label for='venue-id'>Select a venue</label>
-	  <select class="form-control" name='venue-id' type='text'>
-	    @foreach (var venue in @Model["allVenues"])
-	    {
-	      <option value='@venue.GetId()'>@venue.GetLocation()</option>
-	    }
-	  </select>
-	  <button class="btn btn-default" type='submit'>Add</button>
-	</div>
-</form>
+@if(@Model["allVenues"].Count <=0)
+{
+	<div>There are no venues available to add. Please add a <a href="/venues/new">venue</a>.</div>
+}
+else
+{
+	<div>Would you like to add another venue to this band?</div>
+	<form action='/band/add_venue' method='post'>
+		<div class="form-group">
+		  <input id='band-id' name='band-id' type='hidden' value='@Model["band"].GetId()'>
+		  <select class="form-control" name='venue-id' type='text'>
+		    @foreach (var venue in @Model["allVenues"])
+		    {
+		      <option value='@venue.GetId()'>@venue.GetLocation()</option>
+		    }
+		  </select>
+		  <button class="btn btn-default add" type='submit'>Add</button>
+		</div>
+	</form>
+}
 <p><a href="/">Home</a></p>

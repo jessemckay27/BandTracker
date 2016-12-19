@@ -18,3 +18,41 @@ body {
 #test {
   background-color: blue;
 }
+
+div {
+  margin-bottom: 10px;
+}
+
+input {
+  margin-bottom: 15px;
+}
+
+ul {
+  padding-left: 0px;
+  list-style: none;
+  margin-bottom: 30px;
+}
+
+li {
+  border: 1px solid #dadada;
+  background: #fff;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 5px;
+}
+
+.delete {
+  background-color: #d74f4a;
+  color: #fff;
+  border: none;
+}
+
+.add {
+  background-color:  #3fa9f5;
+  color: #fff;
+  border: none;
+}
+
+.form-control {
+  margin-bottom: 15px;
+}

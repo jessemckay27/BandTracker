@@ -99,6 +99,7 @@ namespace BandTracker.Objects
       Assert.Equal(savedBand, testBand);
     }
 
+    [Fact]
     public void Find_FindVenueInDatabase_VenueId()
     {
       Venue newVenue = new Venue("Cornell University");
@@ -108,11 +109,6 @@ namespace BandTracker.Objects
 
       Assert.Equal(newVenue, foundVenue);
     }
-
-
-
-
-
 
     public void Dispose()
     {

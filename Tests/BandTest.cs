@@ -98,6 +98,7 @@ namespace BandTracker.Objects
       Assert.Equal(savedVenue, testVenue);
     }
 
+    [Fact]
     public void Find_FindBandInDatabase_BandId()
     {
       Band newBand = new Band("Grateful Dead");

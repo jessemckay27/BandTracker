@@ -8,8 +8,8 @@ namespace BandTracker.Objects
   public class Band
   {
 
-    private string _name; //column 1
-    private int _id;   //column 0
+    private string _name;
+    private int _id;
 
     public Band(string Name, int Id = 0)
     {
@@ -218,9 +218,6 @@ namespace BandTracker.Objects
       return foundBand;
     }
 
-
-
-
     public static void DeleteAll()
     {
       SqlConnection conn = DB.Connection();
@@ -230,6 +227,5 @@ namespace BandTracker.Objects
       cmd.ExecuteNonQuery();
       conn.Close();
     }
-
   }
 }

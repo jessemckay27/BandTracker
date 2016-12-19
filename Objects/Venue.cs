@@ -8,8 +8,8 @@ namespace BandTracker.Objects
   public class Venue
   {
 
-    private string _location; //column 1
-    private int _id;   //column 0
+    private string _location;
+    private int _id;
 
     public Venue(string Location, int Id = 0)
     {
@@ -130,7 +130,6 @@ namespace BandTracker.Objects
       bandIdParameter.ParameterName = "@BandId";
       bandIdParameter.Value = newBand.GetId();
 
-
       cmd.Parameters.Add(bandIdParameter);
       cmd.Parameters.Add(venueIdParameter);
 
@@ -218,7 +217,6 @@ namespace BandTracker.Objects
 
       return foundVenue;
     }
-
 
     public static void DeleteAll()
     {
