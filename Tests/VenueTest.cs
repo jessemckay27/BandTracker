@@ -110,6 +110,19 @@ namespace BandTracker.Objects
       Assert.Equal(newVenue, foundVenue);
     }
 
+    [Fact]
+    public void Test_UpdatesVenueInDatabase()
+    {
+      Venue newVenue = Venue("Jerry Garcia");
+      newVenue.Save();
+      newVenue.Update("Bob Weir");
+
+      Venue testVenue = Venue("Bob Weir");
+
+      Assert.Equal(newVenue, testVenue);
+    }
+
+
     public void Dispose()
     {
       Band.DeleteAll();
