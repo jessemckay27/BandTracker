@@ -51,9 +51,9 @@ _Venue Tests_
 * 2> GO
 
 * 1> CREATE TABLE bands (id INT IDENTITY(1,1), name VARCHAR(255));
-* 2> GP
+* 2> GO
 
-* 1> CREATE TABLE venues_bands (id INT IDENTITY(1,1), venue_id INT, band_id INT);
+* 1> CREATE TABLE bands_venues (id INT IDENTITY(1,1), venue_id INT, band_id INT);
 * 2> GO
 
 * 1> EXIT
