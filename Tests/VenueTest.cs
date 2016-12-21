@@ -113,7 +113,6 @@ namespace BandTracker.Objects
     [Fact]
     public void Update_UpdatesVenueInDatabase_VenueLocation()
     {
-
       Venue testVenue = new Venue("Cornell University");
       testVenue.Save();
 
@@ -125,6 +124,21 @@ namespace BandTracker.Objects
       Venue expected = new Venue(newLocation);
 
       Assert.Equal(expected, result);
+    }
+
+    [Fact]
+    public void Delete_RemoveVenueFromDatabase_VenueId)
+    {
+      Venue newVenue = new Venue("The Filmore");
+      newVenue.Save();
+      Venue testVenue = new Venue("Cornell University");
+      newVenue.Save();
+
+      newVenue.Delete();
+      List<Venue> deletedVenueList = Venue.GetAll();
+      List<Venue> literalVenueList = new List<Venue> {testVenue};
+
+      Assert.Equal(deletedVenueList, literalVenueList);
     }
 
     public void Dispose()

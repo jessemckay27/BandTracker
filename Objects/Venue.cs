@@ -242,6 +242,10 @@ namespace BandTracker.Objects
       }
     }
 
+
+
+
+
     public static void DeleteAll()
     {
       SqlConnection conn = DB.Connection();
