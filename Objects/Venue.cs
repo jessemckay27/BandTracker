@@ -223,20 +223,32 @@ namespace BandTracker.Objects
       SqlConnection conn = DB.Connection();
       conn.Open();
 
-      SqlCommand cmd = new SqlCommand("UPDATE venues SET location = @UpdateLocation WHERE id = @VenueId;", conn);
-
-      SqlParameter locationParameter = new SqlParameter();
-      locationParameter.ParameterName = "@UpdateLocation";
-      locationParameter.Value = updateLocation;
-      cmd.Parameters.Add(locationParameter);
+      SqlCommand cmd = new SqlCommand("UPDATE venues SET location = @UpdateLocation OUTPUT INSERTED.location WHERE id = @VenueId;", conn);
 
       SqlParameter venueIdParameter = new SqlParameter();
       venueIdParameter.ParameterName = "@VenueId";
       venueIdParameter.Value = this.GetId();
       cmd.Parameters.Add(venueIdParameter);
 
-      cmd.ExecuteNonQuery();
-      
+      SqlParameter locationParameter = new SqlParameter();
+      locationParameter.ParameterName = "@UpdateLocation";
+      locationParameter.Value = updateLocation;
+      cmd.Parameters.Add(locationParameter);
+
+      // cmd.ExecuteNonQuery();
+
+      SqlDataReader rdr = cmd.ExecuteReader();
+
+      while(rdr.Read())
+      {
+        _location = rdr.GetString(0);
+      }
+
+      if(rdr != null)
+      {
+        rdr.Close();
+      }
+
       if(conn != null)
       {
         conn.Close();
@@ -261,10 +273,6 @@ namespace BandTracker.Objects
         conn.Close();
       }
     }
-
-
-
-
 
     public static void DeleteAll()
     {

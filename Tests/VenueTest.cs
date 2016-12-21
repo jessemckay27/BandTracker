@@ -10,8 +10,8 @@ namespace BandTracker.Objects
   {
     public VenueTest()
     {
-      // DBConfiguration.ConnectionString = "Data Source=(localdb)\\mssqllocaldb;Initial Catalog=band_tracker_test;Integrated Security=SSPI";
-      DBConfiguration.ConnectionString = "Data Source=desktop-ddsnb9e;Initial Catalog=band_tracker_test;Integrated Security=SSPI";
+      DBConfiguration.ConnectionString = "Data Source=(localdb)\\mssqllocaldb;Initial Catalog=band_tracker_test;Integrated Security=SSPI";
+      // DBConfiguration.ConnectionString = "Data Source=desktop-ddsnb9e;Initial Catalog=band_tracker_test;Integrated Security=SSPI";
     }
 
     [Fact]
@@ -116,11 +116,14 @@ namespace BandTracker.Objects
       Venue newVenue = new Venue("Cornell University");
       newVenue.Save();
 
-      newVenue.Update("test");
-      newVenue.Save();
+      newVenue.Update("The Filmore");
 
-      Assert.Equal("test", newVenue.GetLocation());
+      Venue testVenue = new Venue("The Filmore", newVenue.GetId());
+
+
+      Assert.Equal(newVenue.GetId(), testVenue.GetId());
     }
+
 
     [Fact]
     public void Delete_RemoveVenueFromDatabase_VenueId()
