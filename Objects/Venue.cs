@@ -218,22 +218,42 @@ namespace BandTracker.Objects
       return foundVenue;
     }
 
-    public void Update(string newLocation)
+    public void Update(string updateLocation)
     {
       SqlConnection conn = DB.Connection();
       conn.Open();
 
-      SqlCommand cmd = new SqlCommand("UPDATE venues SET location = @NewLocation WHERE id = @VenueId;", conn);
+      SqlCommand cmd = new SqlCommand("UPDATE venues SET location = @UpdateLocation WHERE id = @VenueId;", conn);
 
-      SqlParameter newLocationParameter = new SqlParameter();
-      newLocationParameter.ParameterName = "@NewLocation";
-      newLocationParameter.Value = newLocation;
-      cmd.Parameters.Add(newLocationParameter);
+      SqlParameter locationParameter = new SqlParameter();
+      locationParameter.ParameterName = "@UpdateLocation";
+      locationParameter.Value = updateLocation;
+      cmd.Parameters.Add(locationParameter);
 
       SqlParameter venueIdParameter = new SqlParameter();
       venueIdParameter.ParameterName = "@VenueId";
       venueIdParameter.Value = this.GetId();
       cmd.Parameters.Add(venueIdParameter);
+
+      cmd.ExecuteNonQuery();
+      
+      if(conn != null)
+      {
+        conn.Close();
+      }
+    }
+
+    public void Delete()
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("DELETE FROM venues WHERE id = @VenueId; DELETE FROM bands_venues WHERE venue_id = @VenueId", conn);
+      SqlParameter deleteIdParameter = new SqlParameter();
+      deleteIdParameter.ParameterName = "@VenueId";
+      deleteIdParameter.Value = this.GetId();
+
+      cmd.Parameters.Add(deleteIdParameter);
 
       cmd.ExecuteNonQuery();
       if(conn != null)
@@ -251,7 +271,7 @@ namespace BandTracker.Objects
       SqlConnection conn = DB.Connection();
       conn.Open();
 
-      SqlCommand cmd = new SqlCommand("DELETE FROM venues;", conn);
+      SqlCommand cmd = new SqlCommand("DELETE FROM venues; DELETE FROM bands_venues;", conn);
       cmd.ExecuteNonQuery();
       conn.Close();
     }
