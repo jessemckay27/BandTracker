@@ -218,6 +218,30 @@ namespace BandTracker.Objects
       return foundVenue;
     }
 
+    public void Update(string newLocation)
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("UPDATE venues SET location = @NewLocation WHERE id = @VenueId;", conn);
+
+      SqlParameter newLocationParameter = new SqlParameter();
+      newLocationParameter.ParameterName = "@NewLocation";
+      newLocationParameter.Value = newLocation;
+      cmd.Parameters.Add(newLocationParameter);
+
+      SqlParameter venueIdParameter = new SqlParameter();
+      venueIdParameter.ParameterName = "@VenueId";
+      venueIdParameter.Value = this.GetId();
+      cmd.Parameters.Add(venueIdParameter);
+
+      cmd.ExecuteNonQuery();
+      if(conn != null)
+      {
+        conn.Close();
+      }
+    }
+
     public static void DeleteAll()
     {
       SqlConnection conn = DB.Connection();

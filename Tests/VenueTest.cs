@@ -111,17 +111,21 @@ namespace BandTracker.Objects
     }
 
     [Fact]
-    public void Test_UpdatesVenueInDatabase()
+    public void Update_UpdatesVenueInDatabase_VenueLocation()
     {
-      Venue newVenue = Venue("Jerry Garcia");
-      newVenue.Save();
-      newVenue.Update("Bob Weir");
 
-      Venue testVenue = Venue("Bob Weir");
+      Venue testVenue = new Venue("Cornell University");
+      testVenue.Save();
 
-      Assert.Equal(newVenue, testVenue);
+      string newLocation = "The Filmore";
+
+      testVenue.Update(newLocation);
+
+      Venue result = Venue.GetAll()[0];
+      Venue expected = new Venue(newLocation);
+
+      Assert.Equal(expected, result);
     }
-
 
     public void Dispose()
     {
