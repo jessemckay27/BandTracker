@@ -1,0 +1,15 @@
+@{
+	Layout="Shared/_Layout.cshtml";
+}
+<h3>@Model.GetLocation()</h3>
+<div>What would you like the new venue name to be?</div>
+<form action='/venue/@Model.GetId()/update' method="post">
+  <div class="form-group">
+    <input type="hidden" name="_method" value="PATCH">
+    <input class="form-control" type="hidden" name="update-id" value="@Model.GetId()">
+		<input class="form-control" type="text" name="update-location" placeholder="Enter a venue">
+		<button class="btn btn-default" type="submit">Update</button>
+	</div>
+</form>
+<div><a href="/venues">View all venues</a></div>
+<div><a href="/">Home</a></div>

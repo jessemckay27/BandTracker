@@ -19,6 +19,10 @@ body {
   background-color: blue;
 }
 
+h3 {
+  margin-top: 10px;
+}
+
 div {
   margin-bottom: 10px;
 }
@@ -30,7 +34,7 @@ input {
 ul {
   padding-left: 0px;
   list-style: none;
-  margin-bottom: 30px;
+  margin-bottom: 15px;
 }
 
 li {
@@ -45,6 +49,11 @@ li {
   background-color: #d74f4a;
   color: #fff;
   border: none;
+}
+
+.delete a {
+  color: #fff;
+  text-decoration: none;
 }
 
 .add {

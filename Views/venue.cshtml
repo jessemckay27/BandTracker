@@ -2,6 +2,15 @@
 	Layout="Shared/_Layout.cshtml";
 }
 <h3>@Model["venue"].GetLocation()</h3>
+<div id="wrap">
+	<div>
+		<a class="btn btn-default add right-fix" href='/venue/@Model["venue"].GetId()/update'>Edit Location</a>
+	</div>
+	<form action='/venue/@Model["venue"].GetId()/delete' method="post">
+		<input type="hidden" name="_method" value="DELETE">
+		<button class="btn btn-default delete" type="submit">Delete Location</button>
+	</form>
+</div>
 @if(@Model["venueBands"].Count <= 0)
 {
 	<div>This venue has no bands.</div>

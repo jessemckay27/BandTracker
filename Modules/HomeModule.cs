@@ -40,6 +40,7 @@ namespace BandTracker
         newBand.AddVenue(newVenue);
         return View["success.cshtml"];
       };
+
       Get["/venues"] = _ => {
         List<Venue> allVenues = Venue.GetAll();
         return View["venues.cshtml", allVenues];
@@ -68,6 +69,24 @@ namespace BandTracker
         newVenue.AddBand(newBand);
         return View["success.cshtml"];
       };
+
+      Get["/venue/{id}/update"] = parameters => {
+        Venue selectedVenue = Venue.Find(parameters.id);
+        return View["venue_update.cshtml", selectedVenue];
+      };
+
+      Patch["/venue/{id}/update"] = parameters => {
+        Venue foundVenue = Venue.Find(parameters.id);
+        foundVenue.Update(Request.Form["update-location"]);
+        return View["success.cshtml"];
+      };
+
+      Delete["/venue/{id}/delete"] = parameters => {
+        Venue foundVenue = Venue.Find(parameters.id);
+        foundVenue.Delete();
+        return View["success.cshtml"];
+      };
+
       Post["/bands/delete"] = _ => {
         Band.DeleteAll();
         return View["success.cshtml"];

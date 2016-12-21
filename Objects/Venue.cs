@@ -225,17 +225,15 @@ namespace BandTracker.Objects
 
       SqlCommand cmd = new SqlCommand("UPDATE venues SET location = @UpdateLocation OUTPUT INSERTED.location WHERE id = @VenueId;", conn);
 
-      SqlParameter venueIdParameter = new SqlParameter();
-      venueIdParameter.ParameterName = "@VenueId";
-      venueIdParameter.Value = this.GetId();
-      cmd.Parameters.Add(venueIdParameter);
-
       SqlParameter locationParameter = new SqlParameter();
       locationParameter.ParameterName = "@UpdateLocation";
       locationParameter.Value = updateLocation;
       cmd.Parameters.Add(locationParameter);
 
-      // cmd.ExecuteNonQuery();
+      SqlParameter venueIdParameter = new SqlParameter();
+      venueIdParameter.ParameterName = "@VenueId";
+      venueIdParameter.Value = this.GetId();
+      cmd.Parameters.Add(venueIdParameter);
 
       SqlDataReader rdr = cmd.ExecuteReader();
 
